@@ -31,6 +31,7 @@ namespace Calculator_csharp
         private void clearButton_Click(object sender, EventArgs e)
         {
             answer = 0m;
+            num1 = 0m;
             operation = 'c';
             resultLabel.Text = "0";
             resultString = "";
@@ -52,33 +53,43 @@ namespace Calculator_csharp
 
         private void subtractButton_Click(object sender, EventArgs e)
         {
-            if ( (operation == '-') || (operation == '+') )
+            if ((operation == '+') || (operation == '-'))
             {
-                answer = num1- decimal.Parse(resultLabel.Text);
+                if (operation == '+')
+                    answer = decimal.Parse(resultLabel.Text) + num1;
+                else
+                    answer = num1 - decimal.Parse(resultLabel.Text);
+
                 resultLabel.Text = answer.ToString("#,#.###############");
                 num1 = answer;
             }
             else
             {
-                operation = '-';
                 num1 = decimal.Parse(resultLabel.Text);
             }
+
+            operation = '-';
             resultString = "";
         }
 
         private void addButton_Click(object sender, EventArgs e)
         {
-            if ( (operation == '+') || (operation == '-') )
+            if ((operation == '+') || (operation == '-'))
             {
-                answer = decimal.Parse(resultLabel.Text) + num1;
+                if (operation == '+')
+                    answer = decimal.Parse(resultLabel.Text) + num1;
+                else
+                    answer = num1 - decimal.Parse(resultLabel.Text);
+
                 resultLabel.Text = answer.ToString("#,#.###############");
                 num1 = answer;
             }
             else
             {
-                operation = '+';
                 num1 = decimal.Parse(resultLabel.Text);
             }
+
+            operation = '+';
             resultString = "";
         }
 
